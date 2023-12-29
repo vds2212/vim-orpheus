@@ -31,11 +31,13 @@ function! s:addonewindow()
 endfunction
 
 function! s:spreadbuffers(buffers)
-  enew
   if len(a:buffers) == 0
     return
   endif
-  only
+  if winnr('$') > 1
+    enew
+    only
+  endif
   for i in range(2, len(a:buffers))
     call s:addonewindow()
   endfor
@@ -47,12 +49,32 @@ function! s:spreadbuffers(buffers)
   endfor
 endfunction
 
-function! s:spreadchangedbuffers()
+function! s:getchangedbuffers()
   let buffers = range(1, bufnr('$'))
   let buffers = filter(buffers, 'bufexists(v:val)')
   let buffers = filter(buffers, 'getbufinfo(v:val)[0].changed')
+  return buffers
+endfunction
+
+function! s:spreadchangedbuffers()
+  let buffers = s:getchangedbuffers()
   call s:spreadbuffers(buffers)
   1wincmd w
 endfunction
 
 command! Nde call s:spreadchangedbuffers()
+
+function! s:quitall(bang)
+  " echom 'bang: ' . a:bang
+  if a:bang == '!'
+    qall!
+  endif
+  let buffers = s:getchangedbuffers()
+  if len(buffers) == 0
+    quitall
+  else
+    call s:spreadchangedbuffers()
+  endif
+endfunction
+
+command! -bang Qall call s:quitall('<bang>')
