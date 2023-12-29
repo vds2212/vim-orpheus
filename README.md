@@ -1,2 +1,5 @@
-# vim-orpheus
-A Vim plugin that spreads on one screen all the unsaved buffers
+# Orpheus
+
+Orpheus introduce the `:Nde` (Near Death Experience) command that display all the unsaved buffer in one screen.
+
+

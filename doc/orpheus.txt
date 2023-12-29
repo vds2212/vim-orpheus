@@ -1,0 +1,33 @@
+*orpheus.txt*  Display all unsaved buffer in one screen
+
+Author:  Vivian De Smedt
+License: Same terms as Vim itself (see |license|)
+
+
+==============================================================================
+Orpheus                                                              |orpheus|
+Introduction .......................................... |Orpheus-introduction|
+Usage ........................................................ |orpheus-usage|
+About ........................................................ |orpheus-about|
+
+
+==============================================================================
+INTRODUCTION                                    *orpheus* *orpheus-introduction*
+
+Orpheus introduce the `Nde` command
+>
+    :Nde
+<
+The `Nde` command displays all the unsaved buffer in one screen.
+
+==============================================================================
+USAGE                                                          *orpheus-usage*
+
+==============================================================================
+ABOUT                                                          *orpheus-about*
+
+Grab the latest version or report a bug on GitHub:
+
+http://github.com/vds2212/vim-orpheus
+
+ vim:tw=78:et:ft=help:norl:
