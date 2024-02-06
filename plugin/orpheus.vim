@@ -49,6 +49,22 @@ function! s:spreadbuffers(buffers)
   endfor
 endfunction
 
+function! s:getlistedbuffers()
+  let buffers = range(1, bufnr('$'))
+  let buffers = filter(buffers, 'bufexists(v:val)')
+  let buffers = filter(buffers, 'getbufinfo(v:val)[0].listed')
+  return buffers
+endfunction
+
+function! s:spreadlistedbuffers()
+  let buffers = s:getlistedbuffers()
+  call s:spreadbuffers(buffers)
+  1wincmd w
+endfunction
+
+" Grid All Listed
+command! Grid call s:spreadlistedbuffers()
+
 function! s:getchangedbuffers()
   let buffers = range(1, bufnr('$'))
   let buffers = filter(buffers, 'bufexists(v:val)')
@@ -62,6 +78,7 @@ function! s:spreadchangedbuffers()
   1wincmd w
 endfunction
 
+" Near Death Experience
 command! Nde call s:spreadchangedbuffers()
 
 function! s:quitall(bang)
