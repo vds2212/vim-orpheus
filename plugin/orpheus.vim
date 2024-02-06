@@ -35,7 +35,7 @@ function! s:spreadbuffers(buffers)
     return
   endif
   if winnr('$') > 1
-    enew
+    execute 'b' . a:buffers[1]
     only
   endif
   for i in range(2, len(a:buffers))
